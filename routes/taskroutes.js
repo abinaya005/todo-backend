@@ -6,6 +6,10 @@ const Task = require('../models/Task');
 // ➕ Create Task
 router.post('/', async (req, res) => {
   const { title, description, status, createdBy } = req.body;
+
+  // 🪵 Log incoming request body
+  console.log("📩 Received POST data:", req.body);
+
   if (!title || !createdBy) {
     return res.status(400).json({ error: 'Title and createdBy are required' });
   }
@@ -13,8 +17,10 @@ router.post('/', async (req, res) => {
   try {
     const task = new Task({ title, description, status, createdBy });
     await task.save();
+    console.log("✅ Task created:", task); // success log
     res.status(201).json(task);
   } catch (err) {
+    console.error("❌ Error creating task:", err); // error log
     res.status(500).json({ error: 'Failed to create task' });
   }
 });
