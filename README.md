@@ -56,7 +56,6 @@ Create .env in backend:
 
 3.Configure MongoDB
 PORT=5000
-MONGO_URI=your_mongodb_uri
 Start Backend
 
 4.Start Backend
